@@ -40,5 +40,4 @@ export class CurrencyConversionComponent {
     console.log(change);
     this.convertFromValue = change / 2;
   }
-
 }
