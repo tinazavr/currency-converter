@@ -18,5 +18,27 @@ interface CurrencySelection {
   styleUrl: './currency-conversion.component.scss'
 })
 export class CurrencyConversionComponent {
+  convertFromValue :number | null  = null;
+  convertToValue :number | null = null;
+
+  currency: CurrencySelection[] = [
+    {value: 'usd-0', viewValue: 'usd'},
+    {value: 'eur-1', viewValue: 'eur'},
+    {value: 'pln-2', viewValue: 'pln'},
+    {value: 'uah-3', viewValue: 'uah'},
+  ];
+  choosenCurrency(converterForm: any){
+    console.log(converterForm.value, converterForm.valid)
+  }
+
+  onConvertFromChange(change: number) {
+    console.log(change);
+    this.convertToValue = change * 2;
+  }
+
+  onConvertToChange(change: number) {
+    console.log(change);
+    this.convertFromValue = change / 2;
+  }
 
 }
