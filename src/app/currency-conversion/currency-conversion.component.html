@@ -4,6 +4,7 @@
    <mat-form-field>
      <mat-label>Enter the amount</mat-label>
      <input type="number" matInput
+            name = "convertFromValue"
             [(ngModel)]="convertFromValue" #convertFrom="ngModel"
             (ngModelChange)="onConvertFromChange($event)"
             name="convertFrom" required>
@@ -13,9 +14,14 @@
 
    <mat-form-field>
      <mat-label>Convert from:</mat-label>
-     <mat-select (click)="choosenCurrency(converterForm)" required>
-       @for (value of currency; track currency) {
-         <mat-option [value]="value.value">{{value.viewValue}}</mat-option>
+     <mat-select
+       [(ngModel)]="currencyFrom"
+       name = 'currencyFrom'
+                 required
+       (ngModelChange)="onConvertToChange($event)"
+     >
+       @for (element of currency; track element) {
+         <mat-option [value]="element">{{element}}</mat-option>
        }
      </mat-select>
    </mat-form-field>
@@ -24,16 +30,17 @@
   <mat-form-field>
     <mat-label>Result is:</mat-label>
     <input matInput type="number"
-           [(ngModel)]="convertToValue" #convertTo="ngModel"
+
+           [(ngModel)]="convertToValue"
+           #convertTo="ngModel"
            (ngModelChange)="onConvertToChange($event)"
            name="convertTo">
-    <mat-error *ngIf="convertTo.errors?.['pattern']">Only numbers are allowed.</mat-error>
   </mat-form-field>
   <mat-form-field >
     <mat-label>Convert to:</mat-label>
-    <mat-select required>
-      @for (value of currency; track currency) {
-        <mat-option [value]="value.value">{{value.viewValue}}</mat-option>
+    <mat-select required [(ngModel)]="currencyTo" name="currencyTo" >
+      @for (element of currency; track element) {
+        <mat-option [value]="element">{{element}}</mat-option>
       }
     </mat-select>
   </mat-form-field>
