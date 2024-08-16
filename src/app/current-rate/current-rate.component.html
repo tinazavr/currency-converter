@@ -1,29 +1,28 @@
 <header>
   <h2>Current Course:</h2>
   <table mat-table [dataSource]="dataSource" class="currency-rate-table">
-    <ng-container matColumnDef="demo-position">
+    <ng-container matColumnDef="what-to-do">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element"> {{element.whatToDo}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="demo-name">
-      <th mat-header-cell *matHeaderCellDef> USD </th>
+    <ng-container matColumnDef="usd">
+      <th mat-header-cell *matHeaderCellDef> 1 USD </th>
       <td mat-cell *matCellDef="let element"> {{element.usd}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="demo-weight">
-      <th mat-header-cell *matHeaderCellDef> EUR </th>
+    <ng-container matColumnDef="eur">
+      <th mat-header-cell *matHeaderCellDef> 1 EUR </th>
       <td mat-cell *matCellDef="let element"> {{element.eur}} </td>
     </ng-container>
-
-    <ng-container matColumnDef="demo-symbol">
-      <th mat-header-cell *matHeaderCellDef> PLN </th>
+    <ng-container matColumnDef="pln">
+      <th mat-header-cell *matHeaderCellDef> 1 PLN </th>
       <td mat-cell *matCellDef="let element"> {{element.pln}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <p>* to the UAH</p>
+  <p>* in the UAH</p>
 </header>
 

@@ -3,10 +3,6 @@ import {MatTableModule} from "@angular/material/table";
 import {CurrencyRate} from "../currency-rate";
 import {CurrencyService} from "../currency.service";
 
-const CurrencyData: CurrencyRate[] = [
-  {whatToDo: "Buy", usd: 40, eur: 1, pln: 5},
-  {whatToDo: "Sell", usd: 42, eur: 4, pln: 3},
-];
 @Component({
   selector: 'app-current-rate',
   standalone: true,
@@ -15,11 +11,18 @@ const CurrencyData: CurrencyRate[] = [
   styleUrl: './current-rate.component.scss'
 })
 export class CurrentRateComponent {
-  uah: any;
+  currencyData:CurrencyRate[]=[];
   constructor(private currencyService: CurrencyService) {
-    this.currencyService.getExchangeRatesFor("uah").subscribe((data)=>{this.uah = data.uah})
+
+    this.currencyService.getExchangeRates().subscribe((data)=>{
+      console.log(data.conversion_rates);
+      this.dataSource = [
+        {whatToDo: "Buy", usd: Math.round(1/data.conversion_rates.USD), eur: Math.round(1/data.conversion_rates.EUR), pln: Math.round(1/data.conversion_rates.PLN)},
+        {whatToDo: "Sell", usd: Math.round(1/data.conversion_rates.USD * 1.1), eur: Math.round(1/data.conversion_rates.EUR * 1.1), pln: Math.round(1/data.conversion_rates.PLN * 1.1)},
+      ];
+    })
   }
 
-  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
-  dataSource = CurrencyData;
+  displayedColumns: string[] = ['what-to-do', 'usd', 'eur', 'pln'];
+  dataSource:CurrencyRate[] = [];
 }
