@@ -1,4 +1,4 @@
-<div class="app">
-  <app-current-rate></app-current-rate>
-  <app-currency-conversion></app-currency-conversion>
+<div class="app" *ngIf="exchangeRate">
+  <app-current-rate [exchangeRate]="exchangeRate"></app-current-rate>
+  <app-currency-conversion [exchangeRate]="exchangeRate"></app-currency-conversion>
 </div>
