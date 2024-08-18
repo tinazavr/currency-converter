@@ -6,10 +6,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
 import {CurrencyService} from "../currency.service";
 
-interface CurrencySelection {
-  value: string;
-  viewValue: string;
-}
 type CurrencyOption = "usd" | "pln" | "eur" | "uah";
 @Component({
   selector: 'app-currency-conversion',
@@ -20,8 +16,8 @@ type CurrencyOption = "usd" | "pln" | "eur" | "uah";
 })
 export class CurrencyConversionComponent {
   exchangeRate: any = {};
-  convertFromValue :number | null  = null;
-  convertToValue :number | null = null;
+  convertFromValue :number | undefined;
+  convertToValue :number | undefined;
   currencyFrom : CurrencyOption = "usd";
   currencyTo : CurrencyOption = "uah";
 
@@ -29,13 +25,16 @@ export class CurrencyConversionComponent {
   currency: CurrencyOption[] = ['usd', 'eur','pln', 'uah'];
 
 
-  onConvertFromChange(change: number) {
-    this.convertToValue = change * this.exchangeRate[this.currencyFrom][this.currencyTo.toUpperCase()];
-  }
+  onConvertFromChange() {
+    if(typeof this.convertFromValue !== "undefined") {
+      console.log(this.convertFromValue , this.currencyFrom);
+      this.convertToValue = this.convertFromValue * this.exchangeRate[this.currencyFrom][this.currencyTo.toUpperCase()];
+    }}
 
-  onConvertToChange(change: number) {
-    this.convertFromValue = change * this.exchangeRate[this.currencyTo][this.currencyFrom.toUpperCase()];
-  }
+  onConvertToChange() {
+    if(typeof this.convertToValue !== "undefined") {
+    this.convertFromValue = this.convertToValue * this.exchangeRate[this.currencyTo][this.currencyFrom.toUpperCase()];
+  }}
 
   constructor(private currencyService: CurrencyService) {
   }
