@@ -1,24 +1,19 @@
 <h2>Currency conversion:</h2>
-<form #converterForm="ngForm">
-
+<!--<form #converterForm="ngForm">-->
+<form [formGroup]="form">
    <mat-form-field>
      <mat-label>Enter the amount</mat-label>
      <input type="number" matInput
             name = "convertFromValue"
-            [(ngModel)]="convertFromValue" #convertFrom="ngModel"
-            (ngModelChange)="onConvertFromChange()"
+            formControlName="enter"
             required>
-     <mat-error *ngIf="convertFrom.errors?.['required']">The amount is mandatory.</mat-error>
-
    </mat-form-field>
 
    <mat-form-field>
      <mat-label>Convert from:</mat-label>
      <mat-select
-       [(ngModel)]="currencyFrom"
-       name = 'currencyFrom'
+       formControlName="convertFrom"
                  required
-       (ngModelChange)="onConvertFromChange()"
      >
        @for (element of currency; track element) {
          <mat-option [value]="element">{{element}}</mat-option>
@@ -30,21 +25,17 @@
   <mat-form-field>
     <mat-label>Result is:</mat-label>
     <input matInput type="number"
-
-           [(ngModel)]="convertToValue"
-           #convertTo="ngModel"
-           (ngModelChange)="onConvertToChange()"
+           formControlName="result"
            name="convertTo">
   </mat-form-field>
   <mat-form-field >
     <mat-label>Convert to:</mat-label>
     <mat-select required
-                [(ngModel)]="currencyTo"
-                name="currencyTo"
-                (ngModelChange)="onConvertToChange()">
-      @for (element of currency; track element) {
-        <mat-option [value]="element">{{element}}</mat-option>
-      }
+                formControlName="convertTo"
+                >
+<!--      @for (element of currency; track element) {-->
+<!--        <mat-option [value]="element">{{element}}</mat-option>-->
+<!--      }-->
     </mat-select>
   </mat-form-field>
 </form>
