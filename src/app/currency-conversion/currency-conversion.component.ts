@@ -6,7 +6,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
 import Validation from "../shared/validation";
 
-type CurrencyOption = "usd" | "pln" | "eur" | "uah";
 @Component({
   selector: 'app-currency-conversion',
   standalone: true,
@@ -15,29 +14,36 @@ type CurrencyOption = "usd" | "pln" | "eur" | "uah";
   styleUrl: './currency-conversion.component.scss'
 })
 export class CurrencyConversionComponent {
+
   valid: Validation = new Validation()
 
+
   @Input() exchangeRate: any;
-  convertFromValue :number | undefined;
-  convertToValue :number | undefined;
-  currencyFrom : CurrencyOption = "usd";
-  currencyTo : CurrencyOption = "uah";
-  currency: CurrencyOption[] = ['usd', 'eur','pln', 'uah'];
+  // convertFromValue :number | undefined;
+  convertFromValue = new FormControl({validators: [Validators.required, this.valid.numberValidator]});
+  currencyFrom = new FormControl('usd');
+  convertToValue = new FormControl('', {validators: [Validators.required]});
+  currency: string[] = ['usd', 'eur', 'pln', 'uah'];
+  // currencyFrom : CurrencyOption = this.currency[0];
+  currencyTo = new FormControl('uah');
+
 
   form = new FormGroup({
-    enter: new FormControl('', {validators: [Validators.required, this.valid.numberValidator]}),
-    convertFrom: new FormControl(this.currency),
-    result: new FormControl('', {validators: [Validators.required]}),
-    convertTo: new FormControl(this.currency),
+    enterValue: this.convertFromValue,
+    convertFromCurrency: this.currencyFrom,
+    result: this.convertToValue,
+    convertToCurrency: this.currencyTo,
   })
 
   onConvertFromChange() {
-    if(typeof this.convertFromValue !== "undefined") {
+    if (typeof this.convertFromValue !== "undefined") {
       this.convertToValue = this.convertFromValue * this.exchangeRate[this.currencyFrom][this.currencyTo.toUpperCase()];
-    }}
+    }
+  }
 
   onConvertToChange() {
-    if(typeof this.convertToValue !== "undefined") {
-    this.convertFromValue = this.convertToValue * this.exchangeRate[this.currencyTo][this.currencyFrom.toUpperCase()];
-  }}
+    if (typeof this.convertToValue !== "undefined") {
+      this.convertFromValue = this.convertToValue * this.exchangeRate[this.currencyTo][this.currencyFrom.toUpperCase()];
+    }
+  }
 }
