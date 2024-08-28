@@ -1,45 +1,46 @@
 <h2>Currency conversion:</h2>
 <!--<form #converterForm="ngForm">-->
 <form [formGroup]="form">
-  <mat-form-field>
-    <mat-label>Enter the amount</mat-label>
-    <input [formControl]="convertFromValue" matInput
-           name="convertFromValue"
-           type="number"
-    >
-  </mat-form-field>
+   <mat-form-field>
+     <mat-label>Enter the amount</mat-label>
+     <input type="number" matInput
+            name = "convertFromValue"
+            formControlName="enter"
+            required>
+   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Convert from:</mat-label>
-    <mat-select
-      [formControl]="currencyFrom"
-
-    >
-      @for (element of currency; track element) {
-        <mat-option [value]="element">{{ element }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
+   <mat-form-field>
+     <mat-label>Convert from:</mat-label>
+     <mat-select
+       formControlName="convertFrom"
+                 required
+     >
+       @for (element of currency; track element) {
+         <mat-option [value]="element">{{element}}</mat-option>
+       }
+     </mat-select>
+   </mat-form-field>
+<!--
+-->
   <mat-form-field>
     <mat-label>Result is:</mat-label>
-    <input [formControl]="convertToValue" matInput
-    >
+    <input matInput type="number"
+           formControlName="result"
+           name="convertTo">
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field >
     <mat-label>Convert to:</mat-label>
-    <mat-select
-      [formControl]="currencyTo"
-    >
-      @for (element of currency; track element) {
-        <mat-option [value]="element">{{ element }}</mat-option>
-      }
+    <mat-select required
+                formControlName="convertTo"
+                >
+<!--      @for (element of currency; track element) {-->
+<!--        <mat-option [value]="element">{{element}}</mat-option>-->
+<!--      }-->
     </mat-select>
   </mat-form-field>
 </form>
 <div class="footer-links">
-  <a href="https://www.linkedin.com/in/anastasiia-zavorotynska-849972133/" target="_blank" title="Link to Linkedin">Anastasiia
-    Zavorotynska</a>
+  <a target="_blank" href="https://www.linkedin.com/in/anastasiia-zavorotynska-849972133/" title="Link to Linkedin">Anastasiia Zavorotynska</a>
   <br>
-  <a href="https://github.com/tinazavr/currency-converter" target="_blank" title="Link to GitHub">GitHub</a>
+  <a target="_blank" href="https://github.com/tinazavr/currency-converter" title="Link to GitHub">GitHub</a>
 </div>
