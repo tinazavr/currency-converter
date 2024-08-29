@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom, forkJoin} from "rxjs";
+import {ExchangeRateResponse} from "../types/exchange-rate-response";
 
 const apiLink = 'https://v6.exchangerate-api.com/v6/dde4fa9f19f23331bdb99d19/latest'
 @Injectable({
@@ -13,10 +14,10 @@ export class CurrencyService {
 
   async getExchangeRates() {
      const [uah, usd, eur, pln] = await firstValueFrom(forkJoin([
-       this.httpClient.get <any>(apiLink + `/UAH`),
-       this.httpClient.get <any>(apiLink + `/USD`),
-       this.httpClient.get <any>(apiLink + `/EUR`),
-       this.httpClient.get <any>(apiLink + `/PLN`)
+       this.httpClient.get <ExchangeRateResponse>(apiLink + `/UAH`),
+       this.httpClient.get <ExchangeRateResponse>(apiLink + `/USD`),
+       this.httpClient.get <ExchangeRateResponse>(apiLink + `/EUR`),
+       this.httpClient.get <ExchangeRateResponse>(apiLink + `/PLN`)
        ]
      ))
     return {uah: uah.conversion_rates,

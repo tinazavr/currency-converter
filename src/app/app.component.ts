@@ -5,6 +5,7 @@ import {CurrencyConversionComponent} from "./components/currency-conversion/curr
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import {CurrencyService} from "./services/currency.service";
 import {NgIf} from "@angular/common";
+import {ExchangeRateMap} from "./types/exchange-rate-map";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ import {NgIf} from "@angular/common";
 })
 
 export class AppComponent {
-  exchangeRate: any;
+  exchangeRate?: ExchangeRateMap;
   constructor(private currencyService: CurrencyService) {
   }
   async ngOnInit() {

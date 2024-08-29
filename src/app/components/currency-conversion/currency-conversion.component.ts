@@ -5,6 +5,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
 import {CurrencyOption} from "../../types/currency-option";
+import {ExchangeRateMap} from "../../types/exchange-rate-map";
 
 @Component({
   selector: 'app-currency-conversion',
@@ -14,7 +15,7 @@ import {CurrencyOption} from "../../types/currency-option";
   styleUrl: './currency-conversion.component.scss'
 })
 export class CurrencyConversionComponent {
-  @Input() exchangeRate: any;
+  @Input({required: true}) exchangeRate!: ExchangeRateMap;
   convertFromValue :number | undefined;
   convertToValue :number | undefined;
   currencyFrom : CurrencyOption = "usd";
