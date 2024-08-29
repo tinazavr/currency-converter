@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {CurrentRateComponent} from "./current-rate/current-rate.component";
-import {CurrencyConversionComponent} from "./currency-conversion/currency-conversion.component";
+import {CurrentRateComponent} from "./components/current-rate/current-rate.component";
+import {CurrencyConversionComponent} from "./components/currency-conversion/currency-conversion.component";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import {CurrencyService} from "./currency.service";
+import {CurrencyService} from "./services/currency.service";
 import {NgIf} from "@angular/common";
 
 @Component({

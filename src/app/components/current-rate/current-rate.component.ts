@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatTableModule} from "@angular/material/table";
-import {CurrencyRate} from "../currency-rate";
+import {CurrencyRate} from "../../types/currency-rate";
 
 @Component({
   selector: 'app-current-rate',

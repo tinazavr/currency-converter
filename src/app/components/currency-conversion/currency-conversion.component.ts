@@ -4,8 +4,8 @@ import {FormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
+import {CurrencyOption} from "../../types/currency-option";
 
-type CurrencyOption = "usd" | "pln" | "eur" | "uah";
 @Component({
   selector: 'app-currency-conversion',
   standalone: true,
