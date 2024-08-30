@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom, forkJoin} from "rxjs";
 import {ExchangeRateResponse} from "../types/exchange-rate-response";
+import {apiLink} from "../consts/api-link.const";
 
-const apiLink = 'https://v6.exchangerate-api.com/v6/dde4fa9f19f23331bdb99d19/latest'
 @Injectable({
   providedIn: 'root'
 })
